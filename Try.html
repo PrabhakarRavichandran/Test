@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Previous head content remains same -->
+    <style>
+        /* New Styles */
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .education-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Previous sections remain same until contact section -->
+
+    <!-- Education Section -->
+    <section class="section">
+        <h2>Education</h2>
+        <div class="education-card">
+            <h3>J.N.N Institute of Engineering</h3>
+            <p>B.E Computer Science and Engineering</p>
+            <p>2022 - 2026</p>
+        </div>
+    </section>
+
+    <!-- Internships Section -->
+    <section class="section">
+        <h2>Internships</h2>
+        <div class="courses-grid">
+            <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_javadevelopment-internshipjourney-technohacks-activity-7285581881541111808-Kc-a" 
+               class="course-card" 
+               target="_blank">
+                <h3>Java Developer Intern</h3>
+                <p>TechnoHacks EduTech</p>
+                <p>July 2023 - Aug 2023</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Workshops Section -->
+    <section class="section">
+        <h2>Workshops</h2>
+        <div class="courses-grid">
+            <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_be10x-aiinnovation-professionalgrowth-activity-7276858007919935490-Rp8o" 
+               class="course-card" 
+               target="_blank">
+                <h3>AI Tools Workshop</h3>
+                <p>BE10X</p>
+                <p>March 2024</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Honors & Awards Section -->
+    <section class="section">
+        <h2>Honors & Awards</h2>
+        <div class="education-card">
+            <h3>Runner Up - Innovators IQ</h3>
+            <p>NEURONEX25 Symposium by VIT</p>
+            <div class="gallery-grid">
+                <img src="https://raw.githubusercontent.com/PrabhakarRavichandran/NEURONEX25/main/WhatsApp%20Image%202024-05-14%20at%2017.36.41_7d58d5a6.jpg" 
+                     class="gallery-img" 
+                     alt="Award Certificate">
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="section">
+        <h2>Certificates</h2>
+        <div class="gallery-grid">
+            <img src="https://raw.githubusercontent.com/PrabhakarRavichandran/Certificates-/main/IBM%20certificate.jpg" 
+                 class="gallery-img" 
+                 alt="IBM Certificate">
+            <img src="https://raw.githubusercontent.com/PrabhakarRavichandran/Certificates-/main/CS50P%20certificate.jpg" 
+                 class="gallery-img" 
+                 alt="CS50P Certificate">
+            <!-- Add more images as needed -->
+        </div>
+    </section>
+
+    <!-- Updated Contact Section -->
+    <section class="section">
+        <div class="contact-container">
+            <h2>Get in Touch</h2>
+            <div class="socials" style="margin-bottom: 2rem;">
+                <a href="https://wa.me/919042919792" 
+                   class="whatsapp-btn" 
+                   target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Message on WhatsApp
+                </a>
+            </div>
+            <form action="mailto:raviprabahar2006@gmail.com" method="post" class="form-grid">
+                <!-- Keep existing form fields -->
+            </form>
+        </div>
+    </section>
+
+    <!-- Add this to your existing script -->
+    <script>
+        // Add animations for new sections
+        gsap.from('.education-card, .gallery-grid', {
+            scrollTrigger: {
+                trigger: '.education-card, .gallery-grid',
+                start: 'top center'
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1
+        });
+    </script>
+</body>
+  </html>
