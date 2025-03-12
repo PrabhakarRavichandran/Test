@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabhakar R | Python Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --neon-cyan: #0ff;
+            --neon-magenta: #f0f;
+            --dark-bg: #0a0a0f;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        #canvas3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Social Links */
+        .socials {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            border: 1px solid transparent;
+        }
+
+        .social-link:hover {
+            background: rgba(15, 255, 255, 0.1);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(15, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Sections Common Styles */
+        .section {
+            padding: 5rem 10%;
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Cards Common Style */
+        .courses-grid, .awards-grid, .internship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card, .award-card, .internship-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .course-card:hover, .award-card:hover, .internship-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Education Section */
+        .education-card {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Certificates Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            box-shadow: 0 0 30px rgba(15, 255, 255, 0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(15,255,255,0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta));
+            color: black;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section { padding: 3rem 5%; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas3d"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PRABHAKAR R</h1>
+            <p class="tagline">Turning complex problems into elegant solutions</p>
+            <div class="socials">
+                <a href="https://www.linkedin.com/in/prabhakar-ravichandran-22716b285" 
+                   target="_blank" 
+                   class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/PrabhakarRavichandran" 
+                   target="_blank" 
+                   class="social-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <!-- Skill items remain same as before -->
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section">
+        <h2>Certifications</h2>
+        <div class="courses-grid">
+            <!-- Certification cards remain same as before -->
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section">
+        <h2>Education</h2>
+        <div class="education-card">
+            <h3>J.N.N Institute of Engineering</h3>
+            <p>B.E Computer Science and Engineering</p>
+            <p>2022 - 2026</p>
+        </div>
+    </section>
+
+    <!-- Internships Section -->
+    <section class="section">
+        <h2>Internships</h2>
+        <div class="internship-grid">
+            <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_javadevelopment-internshipjourney-technohacks-activity-7285581881541111808-Kc-a" 
+               class="internship-card" 
+               target="_blank">
+                <h3>Java Developer Intern</h3>
+                <p>TechnoHacks EduTech</p>
+                <p>July 2023 - Aug 2023</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Workshops Section -->
+    <section class="section">
+        <h2>Workshops</h2>
+        <div class="courses-grid">
+            <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_be10x-aiinnovation-professionalgrowth-activity-7276858007919935490-Rp8o" 
+               class="course-card" 
+               target="_blank">
+                <h3>AI Tools Workshop</h3>
+                <p>BE10X</p>
+                <p>March 2024</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Honors & Awards Section -->
+    <section class="section">
+        <h2>Honors & Awards</h2>
+        <div class="awards-grid">
+            <div class="award-card">
+                <h3>Runner Up - Innovator IQ</h3>
+                <p>NEURONEX25 Symposium</p>
+                <p>Velammal Institute of Technology (VIT)</p>
+                <p>2023</p>
+                <div class="gallery-grid">
+                    <img src="https://raw.githubusercontent.com/PrabhakarRavichandran/NEURONEX25/main/WhatsApp%20Image%202024-05-14%20at%2017.36.41_7d58d5a6.jpg" 
+                         class="gallery-img" 
+                         alt="NEURONEX25 Certificate">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Gallery -->
+    <section class="section">
+        <h2>Certificates</h2>
+        <div class="gallery-grid">
+            <img src="https://raw.githubusercontent.com/PrabhakarRavichandran/Certificates-/main/IBM%20certificate.jpg" 
+                 class="gallery-img" 
+                 alt="IBM Certificate">
+            <img src="https://raw.githubusercontent.com/PrabhakarRavichandran/Certificates-/main/CS50P%20certificate.jpg" 
+                 class="gallery-img" 
+                 alt="CS50P Certificate">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="contact-container">
+            <h2>Get in Touch</h2>
+            <div class="socials" style="margin-bottom: 2rem;">
+                <a href="https://wa.me/919042919792" 
+                   class="whatsapp-btn" 
+                   target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Message on WhatsApp
+                </a>
+            </div>
+            <form action="mailto:raviprabahar2006@gmail.com" method="post" class="form-grid">
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="input-group">
+                    <label>Message</label>
+                    <textarea rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Three.js Background (same as before)
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Animate all cards
+        gsap.utils.toArray('.skill-item, .course-card, .award-card, .internship-card, .education-card').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: item,
+                opacity: 0,
+                y: 50,
+                duration: 1
+            });
+        });
+
+        // Animate gallery images
+        gsap.utils.toArray('.gallery-img').forEach(img => {
+            gsap.from(img, {
+                scrollTrigger: img,
+                opacity: 0,
+                scale: 0.8,
+                duration: 1
+            });
+        });
+
+        // Rest of the Three.js code remains same
+    </script>
+</body>
+  </html>
