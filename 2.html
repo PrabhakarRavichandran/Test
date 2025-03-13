@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabhakar R - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #2d3436;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            display: flex;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background: linear-gradient(160deg, #2a2d3d 0%, #3e4a5a 100%);
+            color: white;
+            padding: 3rem 2rem;
+            flex: 1 1 300px;
+        }
+
+        .main-content {
+            padding: 3rem 2.5rem;
+            flex: 2 1 700px;
+            background: transparent;
+        }
+
+        .section-title {
+            color: #ff6b6b;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 2px;
+            margin: 2rem 0 1.5rem;
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #ff6b6b;
+        }
+
+        .contact-info {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .contact-info li {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: #ff6b6b;
+            width: 25px;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background: rgba(255,255,255,0.15);
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: #ff6b6b;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .name {
+            font-size: 2.8rem;
+            color: #2a2d3d;
+            margin-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .title {
+            color: #4ecdc4;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .company, .school {
+            color: #4ecdc4;
+            font-weight: 600;
+            display: block;
+            margin: 0.5rem 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .description {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            border-left: 3px solid #ff6b6b;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .project-item {
+            margin-bottom: 1.8rem;
+            background: rgba(255,107,107,0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255,107,107,0.1);
+        }
+
+        .project-item:hover {
+            transform: translateX(10px);
+        }
+
+        .project-title {
+            font-weight: 600;
+            color: #2a2d3d;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .download-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .download-btn {
+            padding: 12px 25px;
+            background: #4ecdc4;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 5px 15px rgba(78,205,196,0.3);
+            font-weight: 600;
+        }
+
+        .download-btn:hover {
+            background: #3da89f;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .container {
+                margin: 0;
+                border-radius: 10px;
+            }
+            
+            .sidebar, .main-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .name {
+                font-size: 2.2rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                right: 10px;
+                top: 10px;
+            }
+            
+            .download-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-buttons">
+        <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+        <button class="download-btn" onclick="downloadPNG()">Download PNG</button>
+    </div>
+    
+    <div class="container" id="resume">
+        <div class="sidebar">
+            <h2 class="section-title">Contact</h2>
+            <ul class="contact-info">
+                <li><i class="fas fa-envelope"></i>raviprabahar2006@gmail.com</li>
+                <li><i class="fas fa-phone"></i>+91 9042919792</li>
+                <li><i class="fas fa-map-marker-alt"></i>Chennai, Tamil Nadu, India</li>
+                <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/prabhakar-ravichandran-22716b285" target="_blank" style="color: white; text-decoration: none;">LinkedIn Profile</a></li>
+                <li><i class="fab fa-github"></i><a href="https://github.com/PrabhakarRavichandran" target="_blank" style="color: white; text-decoration: none;">GitHub Profile</a></li>
+            </ul>
+
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Java</div>
+                <div class="skill-item">C</div>
+                <div class="skill-item">HTML</div>
+                <div class="skill-item">CSS</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">DSA</div>
+                <div class="skill-item">Algorithms</div>
+                <div class="skill-item">AI</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">MongoDB</div>
+            </div>
+
+            <h2 class="section-title">Languages</h2>
+            <div class="skills-grid">
+                <div class="skill-item">English (Fluent)</div>
+                <div class="skill-item">Tamil (Native)</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h1 class="name">Prabhakar R</h1>
+            <h2 class="title">Aspiring Full Stack Developer</h2>
+
+            <h2 class="section-title">About Me</h2>
+            <p class="description">
+                I am Prabhakar R, a Python programmer from Chennai, skilled in Python, Java, HTML, CSS, JavaScript, 
+                SQL, MongoDB, and AI. Passionate about technology, I love solving real-world social problems through 
+                innovative and impactful solutions. Strong focus on creating efficient applications with modern technologies.
+            </p>
+
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-item">
+                <h3>Java Developer Intern</h3>
+                <span class="company">Technohacks</span>
+                <span class="date">2024 - 2025</span>
+                <p class="description">
+                    • Gained hands-on experience in core Java and OOP concepts<br>
+                    • Developed efficient Java applications with real-world implementation<br>
+                    • Enhanced problem-solving skills and debugging techniques<br>
+                    • Collaborated in professional agile development environment<br>
+                    • Worked on data structures and algorithm implementation
+                </p>
+            </div>
+
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <h3>B.E Computer Science Engineering</h3>
+                <span class="school">J.N.N Institute of Engineering</span>
+                <span class="date">2023 - 2027</span>
+            </div>
+
+            <h2 class="section-title">Projects</h2>
+            <div class="project-item">
+                <span class="project-title">AI-Powered Chatbot System <span class="date">(Python, TensorFlow)</span></span>
+                <p class="description">
+                    Developed context-aware chatbot handling 10,000+ daily queries with 92% user satisfaction rate. 
+                    Implemented natural language processing techniques for improved conversation flow and accuracy.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            html2canvas(document.querySelector("#resume")).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+                const imgRatio = canvas.width / canvas.height;
+                const pdfHeight = pageHeight;
+                const pdfWidth = pageHeight * imgRatio;
+                
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save('Prabhakar-R-Resume.pdf');
+            });
+        }
+
+        function downloadPNG() {
+            html2canvas(document.querySelector("#resume")).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Prabhakar-R-Resume.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+    </script>
+</body>
+              </html>
