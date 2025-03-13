@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabhakar R | Python Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --neon-cyan: #0ff;
+            --neon-magenta: #f0f;
+            --dark-bg: #0a0a0f;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        #canvas3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Social Links */
+        .socials {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            border: 1px solid transparent;
+        }
+
+        .social-link:hover {
+            background: rgba(15, 255, 255, 0.1);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(15, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-btn i {
+            margin-right: 8px;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Sections Common Styles */
+        .section {
+            padding: 5rem 10%;
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-cyan);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Courses Grid */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Contact Form */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            box-shadow: 0 0 30px rgba(15, 255, 255, 0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            color: var(--neon-cyan);
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(15,255,255,0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta));
+            color: black;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section { padding: 3rem 5%; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas3d"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PRABHAKAR R</h1>
+            <p class="tagline">Turning complex problems into elegant solutions</p>
+            <div class="socials">
+                <a href="https://www.linkedin.com/in/prabhakar-ravichandran-22716b285" 
+                   target="_blank" 
+                   class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/PrabhakarRavichandran" 
+                   target="_blank" 
+                   class="social-link">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+            </div>
+
+            <!-- WhatsApp Contact Button -->
+            <a href="https://wa.me/919042919792?text=Hello%20I%20am%20interested%20in%20your%20services" target="_blank">
+                <button class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <i class="fab fa-python"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-java"></i>
+                <h3>Java</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-code"></i>
+                <h3>C Programming</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-html5"></i>
+                <h3>HTML5</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-css3-alt"></i>
+                <h3>CSS3</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-js-square"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-brain"></i>
+                <h3>AI & ML</h3>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-database"></i>
+                <h3>MongoDB</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="section">
+        <h2>Certifications</h2>
+        <div class="courses-grid">
+            <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_freecodecamp-webdesign-responsivedesign-activity-7249331542756319232-ZwkQ" 
+               class="course-card" 
+               target="_blank">
+                <h3>Responsible Web Design</h3>
+                <p>freeCodeCamp</p>
+            </a>
+            <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_harvardcs50-computerscience-learning-activity-7299118778804539392-sAiw" 
+               class="course-card" 
+               target="_blank">
+                <h3>CS50x</h3>
+                <p>Harvard University</p>
+            </a>
+            <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_python-cs50p-harvarduniversity-activity-7304846927857102848-UllB" 
+               class="course-card" 
+               target="_blank">
+                <h3>CS50P</h3>
+                <p>Harvard Python</p>
+            </a>
+            <!-- New Certifications -->
+            <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_mongodb-python-nosql-activity-7304172136363872258-9lTT" 
+               class="course-card" 
+               target="_blank">
+                <h3>Connecting to MongoDB in Python</h3>
+                <p>LinkedIn Learning</p>
+            </a>
+            <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_artificialintelligence-ibm-ai-activity-7299759891081007104-38uv" 
+               class="course-card" 
+               target="_blank">
+                <h3>Artificial Intelligence Fundamentals</h3>
+                <p>IBM</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="contact-container">
+            <h2>Get in Touch</h2>
+            <form action="mailto:raviprabahar2006@gmail.com" method="post" class="form-grid">
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="input-group">
+                    <label>Message</label>
+                    <textarea rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Three.js Background
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#canvas3d'), alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Add floating particles
+        const particles = new THREE.BufferGeometry();
+        const particlePositions = new Float32Array(500 * 3);
+        for(let i = 0; i < 1500; i++) {
+            particlePositions[i] = (Math.random() - 0.5) * 10;
+        }
+        particles.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+        const particleMaterial = new THREE.PointsMaterial({ color: 0x00ffff, size: 0.02 });
+        const particleSystem = new THREE.Points(particles, particleMaterial);
+        scene.add(particleSystem);
+
+        camera.position.z = 5;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particleSystem.rotation.y += 0.001;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from('.skill-item', {
+            scrollTrigger: '.skills-grid',
+            opacity: 0,
+            y: 50,
+            stagger: 0.1,
+            duration: 1
+        });
+
+        gsap.from('.course-card', {
+            scrollTrigger: '.courses-grid',
+            opacity: 0,
+            y: 50,
+            stagger: 0.1,
+            duration: 1
+        });
+
+        // Window Resize Handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
