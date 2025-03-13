@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabhakar R - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #2d3436;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: white;
+            display: flex;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background: linear-gradient(160deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 3rem 2rem;
+            flex: 1 1 300px;
+        }
+
+        .main-content {
+            padding: 3rem 2.5rem;
+            flex: 2 1 700px;
+            background: #fff;
+        }
+
+        .section-title {
+            color: #2ecc71;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 2px;
+            margin: 2rem 0 1.5rem;
+            position: relative;
+            font-size: 1.2rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #2ecc71;
+        }
+
+        .contact-info {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .contact-info li {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: #2ecc71;
+            width: 25px;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            background: rgba(255,255,255,0.1);
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: #2ecc71;
+            transform: translateY(-2px);
+        }
+
+        .name {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .title {
+            color: #3498db;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: #2ecc71;
+            border-radius: 50%;
+        }
+
+        .company, .school {
+            color: #3498db;
+            font-weight: 600;
+            display: block;
+            margin: 0.5rem 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .description {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            border-left: 3px solid #2ecc71;
+            color: #555;
+        }
+
+        .project-item {
+            margin-bottom: 1.8rem;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover {
+            transform: translateX(10px);
+        }
+
+        .project-title {
+            font-weight: 600;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 25px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 5px 15px rgba(46,204,113,0.3);
+        }
+
+        .print-button:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                border-radius: 10px;
+            }
+            
+            .sidebar, .main-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .name {
+                font-size: 2.2rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media print {
+            .print-button {
+                display: none;
+            }
+            .container {
+                box-shadow: none;
+                margin: 0;
+                border-radius: 0;
+            }
+            .sidebar {
+                background: #2c3e50 !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">Download PDF</button>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h2 class="section-title">Contact</h2>
+            <ul class="contact-info">
+                <li><i class="fas fa-envelope"></i>raviprabahar2006@gmail.com</li>
+                <li><i class="fas fa-phone"></i>+91 9042919792</li>
+                <li><i class="fas fa-map-marker-alt"></i>Chennai, India</li>
+                <li><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/prabhakar-ravichandran-22716b285" target="_blank" style="color: white; text-decoration: none;">LinkedIn</a></li>
+                <li><i class="fab fa-github"></i><a href="https://github.com/PrabhakarRavichandran" target="_blank" style="color: white; text-decoration: none;">GitHub</a></li>
+            </ul>
+
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Java</div>
+                <div class="skill-item">C</div>
+                <div class="skill-item">HTML5</div>
+                <div class="skill-item">CSS3</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">DSA</div>
+                <div class="skill-item">Algorithms</div>
+                <div class="skill-item">AI/ML</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">MongoDB</div>
+            </div>
+
+            <h2 class="section-title">Languages</h2>
+            <div class="skills-grid">
+                <div class="skill-item">English (Fluent)</div>
+                <div class="skill-item">Tamil (Native)</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h1 class="name">Prabhakar R</h1>
+            <h2 class="title">Aspiring Full Stack Developer</h2>
+
+            <h2 class="section-title">About Me</h2>
+            <p class="description">
+                Passionate developer from Chennai with expertise in Python, Java, and modern web technologies. 
+                Focused on creating innovative solutions to real-world problems through clean, efficient code. 
+                Strong foundation in full-stack development with a special interest in AI applications.
+            </p>
+
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-item">
+                <h3>Java Developer Intern</h3>
+                <span class="company">Technohacks</span>
+                <span class="date">2024 - 2025</span>
+                <p class="description">
+                    • Developed core Java applications using OOP principles<br>
+                    • Implemented data structures & algorithms in real-world scenarios<br>
+                    • Collaborated on agile projects with version control systems<br>
+                    • Optimized code performance through debugging & refactoring<br>
+                    • Participated in code reviews and CI/CD workflows
+                </p>
+            </div>
+
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <h3>B.E Computer Science Engineering</h3>
+                <span class="school">J.N.N Institute of Engineering</span>
+                <span class="date">2023 - 2027</span>
+            </div>
+
+            <h2 class="section-title">Projects</h2>
+            <div class="project-item">
+                <span class="project-title">AI Chatbot System <span class="date">(Python, TensorFlow)</span></span>
+                <p class="description">
+                    Developed intelligent chatbot handling 10k+ daily queries with 92% satisfaction rate.
+                    Implemented NLP techniques for contextual understanding and response generation.
+                    Integrated machine learning models for continuous performance improvement.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
