@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Existing head content remains unchanged -->
+    <style>
+        /* Add to existing CSS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+            border: 1px solid rgba(15, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(15, 255, 255, 0.1);
+        }
+
+        .project-header {
+            border-bottom: 1px solid var(--neon-cyan);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tech-stack span {
+            background: rgba(15, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--neon-cyan);
+        }
+
+        .innovation-box {
+            background: rgba(255, 0, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border: 1px solid var(--neon-magenta);
+        }
+
+        .project-concept {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            min-height: 80px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Existing Hero Section -->
+    <section class="hero">
+        <!-- ... hero content ... -->
+    </section>
+
+    <!-- About Me Section -->
+    <section class="about-me">
+        <!-- ... about content ... -->
+    </section>
+
+    <!-- New Projects Section -->
+    <section class="section">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <!-- AI-Powered Virtual Interviewer -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>AI-Powered Virtual Interviewer</h3>
+                    <div class="tech-stack">
+                        <span>Python</span>
+                        <span>OpenCV</span>
+                        <span>TensorFlow</span>
+                        <span>NLP</span>
+                    </div>
+                </div>
+                <p class="project-concept">An AI-based interviewer that analyzes candidates' responses, facial expressions, and voice tone to provide comprehensive feedback</p>
+                <div class="innovation-box">
+                    <strong>Innovation:</strong> Revolutionizes interview preparation with real-time AI evaluation and performance insights
+                </div>
+            </div>
+
+            <!-- Decentralized Voting System -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Decentralized Voting System</h3>
+                    <div class="tech-stack">
+                        <span>Solidity</span>
+                        <span>Hyperledger</span>
+                        <span>React.js</span>
+                        <span>Node.js</span>
+                    </div>
+                </div>
+                <p class="project-concept">Blockchain-based voting platform ensuring secure, transparent, and tamper-proof electoral processes</p>
+                <div class="innovation-box">
+                    <strong>Innovation:</strong> Provides immutable vote recording and real-time result verification using smart contracts
+                </div>
+            </div>
+
+            <!-- AI-Powered Code Generator -->
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>AI Code Generator</h3>
+                    <div class="tech-stack">
+                        <span>Python</span>
+                        <span>GPT-4</span>
+                        <span>OpenAI Codex</span>
+                        <span>React.js</span>
+                    </div>
+                </div>
+                <p class="project-concept">Intelligent code generation tool that transforms natural language prompts into functional code</p>
+                <div class="innovation-box">
+                    <strong>Innovation:</strong> Accelerates development workflow by automating boilerplate code creation
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Existing Skills Section -->
+    <section class="section">
+        <!-- ... skills content ... -->
+    </section>
+
+    <!-- Rest of existing sections remain unchanged -->
+
+    <script>
+        // Add to existing animations
+        gsap.from('.project-card', {
+            scrollTrigger: {
+                trigger: '.projects-grid',
+                start: 'top center'
+            },
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            duration: 1,
+            ease: "power4.out"
+        });
+    </script>
+</body>
+</html>
