@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabhakar R - Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #6B48FF 0%, #00A3FF 100%);
+            color: white;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 2rem;
+        }
+
+        .name {
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .headline {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: #6B48FF;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            background: #6B48FF;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            background: #5a3ad1;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: transform 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .whatsapp { background: #25D366; color: white; }
+        .email { background: #EA4335; color: white; }
+        .github { background: #6B48FF; color: white; }
+        .linkedin { background: #0A66C2; color: white; }
+
+        .certification-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-left: 4px solid #6B48FF;
+        }
+
+        .certification-item a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .certification-item a:hover {
+            color: #6B48FF;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .name {
+                font-size: 2.5rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-btn {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1 class="name">Prabhakar R</h1>
+            <p class="headline">Aspiring Full Stack Developer</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="download-buttons">
+            <a href="https://raw.githubusercontent.com/PrabhakarRavichandran/Resume_photo/main/Prabhakar.R_Resume.pdf" 
+               download="Prabhakar.R_Resume.pdf" 
+               class="download-btn">
+                <i class="fas fa-download"></i> Download PDF
+            </a>
+            <a href="https://raw.githubusercontent.com/PrabhakarRavichandran/Resume_photo/main/Prabhakar.R_Resume.png" 
+               download="Prabhakar.R_Resume.png" 
+               class="download-btn">
+                <i class="fas fa-download"></i> Download PNG
+            </a>
+        </div>
+
+        <div class="contact-buttons">
+            <a href="https://wa.me/919042919792" class="contact-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="mailto:raviprabahar2006@gmail.com" class="contact-btn email">
+                <i class="far fa-envelope"></i> Email
+            </a>
+            <a href="https://github.com/PrabhakarRavichandran" target="_blank" class="contact-btn github">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/prabhakar-ravichandran-22716b285" target="_blank" class="contact-btn linkedin">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Web Development</div>
+                <div class="skill-item">UI/UX Design</div>
+                <div class="skill-item">Responsive Design</div>
+                <div class="skill-item">Problem Solving</div>
+                <div class="skill-item">Communication</div>
+                <div class="skill-item">Artificial Intelligence</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Java</div>
+                <div class="skill-item">C</div>
+                <div class="skill-item">HTML5</div>
+                <div class="skill-item">CSS3</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">DSA</div>
+                <div class="skill-item">Algorithms</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">MongoDB</div>
+                <div class="skill-item">Git</div>
+                <div class="skill-item">GitHub</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <h3>B.E Computer Science and Engineering</h3>
+                <p>J.N.N Institute of Engineering • 2021-2025</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certification-item">
+                <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_harvardcs50-computerscience-learning-activity-7299118778804539392-sAiw" target="_blank">
+                    CS50X - Introduction to Computer Science
+                </a>
+            </div>
+            <div class="certification-item">
+                <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_artificialintelligence-ibm-ai-activity-7299759891081007104-38uv" target="_blank">
+                    IBM - Artificial Intelligence Fundamentals
+                </a>
+            </div>
+            <div class="certification-item">
+                <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_mongodb-python-nosql-activity-7304172136363872258-9lTT" target="_blank">
+                    Connecting to MongoDB in Python
+                </a>
+            </div>
+            <div class="certification-item">
+                <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_python-cs50p-harvarduniversity-activity-7304846927857102848-UllB" target="_blank">
+                    CS50P - Introduction to Programming with Python
+                </a>
+            </div>
+            <div class="certification-item">
+                <a href="https://www.linkedin.com/posts/prabhakar-ravichandran-22716b285_freecodecamp-webdesign-responsivedesign-activity-7249331542756319232-ZwkQ" target="_blank">
+                    FreeCodeCamp - Responsive Web Design
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
